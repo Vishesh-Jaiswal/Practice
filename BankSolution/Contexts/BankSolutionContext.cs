@@ -14,16 +14,5 @@ namespace BankSolution.Contexts
 
         public DbSet<User> Users { get; set; }
         public DbSet<Account> Accounts { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<User>()
-                .HasOne(u => u.Account)
-                .WithOne(a => a.User)
-                .HasForeignKey<Account>(a => a.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            base.OnModelCreating(modelBuilder);
-        }
     }
 }
