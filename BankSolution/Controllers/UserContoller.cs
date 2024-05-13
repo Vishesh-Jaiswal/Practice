@@ -4,15 +4,15 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace BlogSpotApp.Controllers
+namespace BankSolution.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BloggerController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
 
-        public BloggerController(IUserService userService)
+        public UserController(IUserService userService)
         {
             _userService = userService;
         }
