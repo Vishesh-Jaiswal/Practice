@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace BlogSpotApp.Controllers
+namespace BankSolution.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
