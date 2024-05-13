@@ -9,9 +9,10 @@ namespace BankSolution.Models
         public int AccountId { get; set; }
         public string AccountHolderName { get; set; } = string.Empty;
         public double? Balance { get; set; }
+        [Key, Column(Order = 0)]
         public string AccountType {get; set;} =string.Empty;
-        [ForeignKey("User")]
+        [Key, ForeignKey("User"), Column(Order =1)]
         public int? UserId { get; set; }
-        public User? User { get; set; }
+        public virtual User? User { get; set; }
     }
 }
