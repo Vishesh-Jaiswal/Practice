@@ -14,5 +14,11 @@ namespace BankSolution.Contexts
 
         public DbSet<User> Users { get; set; }
         public DbSet<Account> Accounts { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Account>()
+                .HasKey(a => new { a.AccountType, a.UserId });
+        }
     }
 }

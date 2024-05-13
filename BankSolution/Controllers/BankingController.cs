@@ -3,27 +3,52 @@ using BankSolution.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace BlogSpotApp.Controllers
+namespace BankSolution.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class BankingContoller : ControllerBase
     {
-        private readonly IAccountService _accountService;
+        private readonly IAccountOperationsService _accountOperationsService;
 
-        public BankingContoller(IAccountService accountService)
+        public BankingContoller(IAccountOperationsService accountOperationsService)
         {
-            _accountService = accountService;
+            _accountOperationsService = accountOperationsService;
         }
-        [Route("Create Account")]
-        [HttpPost]
-        public ActionResult Register(Account acc)
+        [Route("Withdraw")]
+        [HttpPut]
+        public ActionResult Withdraw(Account acc)
         {
 
             string message = "";
             try
             {
-                var account = _accountService.Create(acc);
+                _accountOperationsService.Withdraw(acc);
+                if (acc != null)
+                {
+                    return Ok(acc);
+                }
+            }
+            catch (DbUpdateException)
+            {
+                message = "Withdraw Failed";
+            }
+            catch (Exception)
+            {
+
+            }
+            return BadRequest(message);
+        }
+
+        [Route("Deposit")]
+        [HttpPut]
+        public ActionResult Deposit(Account acc)
+        {
+
+            string message = "";
+            try
+            {
+                var account=_accountOperationsService.Deposit(acc);
                 if (account != null)
                 {
                     return Ok(account);
@@ -31,7 +56,7 @@ namespace BlogSpotApp.Controllers
             }
             catch (DbUpdateException)
             {
-                message = "No Such User Exists";
+                message = "Deposit Failed";
             }
             catch (Exception)
             {

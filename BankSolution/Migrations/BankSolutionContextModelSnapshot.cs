@@ -19,28 +19,30 @@ namespace BankSolution.Migrations
 
             modelBuilder.Entity("BankSolution.Models.Account", b =>
                 {
-                    b.Property<int>("AccountId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("AccountHolderName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("AccountType")
-                        .IsRequired()
                         .HasColumnType("TEXT");
-
-                    b.Property<double?>("Balance")
-                        .HasColumnType("REAL");
 
                     b.Property<int?>("UserId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("AccountId");
+                    b.Property<string>("AccountHolderName")
+                        .HasColumnType("TEXT");
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                    b.Property<int>("AccountId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("AccountNumber")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double?>("Amount")
+                        .HasColumnType("REAL");
+
+                    b.Property<double?>("Balance")
+                        .HasColumnType("REAL");
+
+                    b.HasKey("AccountType", "UserId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Accounts");
                 });
@@ -63,9 +65,10 @@ namespace BankSolution.Migrations
             modelBuilder.Entity("BankSolution.Models.Account", b =>
                 {
                     b.HasOne("BankSolution.Models.User", "User")
-                        .WithOne("Account")
-                        .HasForeignKey("BankSolution.Models.Account", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithMany("Account")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });

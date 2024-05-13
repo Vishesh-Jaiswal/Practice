@@ -53,6 +53,9 @@ namespace BankSolution
             #region REPOSITORIES
             builder.Services.AddScoped<IRepository<int, User>, UserRepository>();
             builder.Services.AddScoped<IRepository<int, Account>, AccountRepository>();
+            builder.Services.AddScoped<IAccountNumberGenerator, RandomAccountNumberGenerator>();
+            builder.Services.AddScoped<IAccountOperationsService, BankAccountService>();
+
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IAccountService, AccountService>();
             #endregion

@@ -18,7 +18,7 @@ namespace BankSolution.Controllers
         }
         [Route("Create Account")]
         [HttpPost]
-        public ActionResult Register(Account acc)
+        public ActionResult CreateAccount(Account acc)
         {
 
             string message = "";
@@ -32,7 +32,7 @@ namespace BankSolution.Controllers
             }
             catch (DbUpdateException)
             {
-                message = "No Such User Exists";
+                message = "Account Already Exists";
             }
             catch (Exception)
             {

@@ -32,7 +32,7 @@ namespace BankSolution.Controllers
             }
             catch (DbUpdateException)
             {
-                message = "This User already exists";
+                message = "This user already exists";
             }
             catch (Exception)
             {

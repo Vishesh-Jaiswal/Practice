@@ -7,11 +7,12 @@ namespace BankSolution.Models
     {
         [Key]
         public int AccountId { get; set; }
-        public string AccountHolderName { get; set; } = string.Empty;
+        public int? AccountNumber { get; set; }
+        public string? AccountHolderName { get; set; } = string.Empty;
         public double? Balance { get; set; }
-        [Key, Column(Order = 0)]
+        public double? Amount { get; set; }
         public string AccountType {get; set;} =string.Empty;
-        [Key, ForeignKey("User"), Column(Order =1)]
+         [ForeignKey("User")]
         public int? UserId { get; set; }
         public virtual User? User { get; set; }
     }

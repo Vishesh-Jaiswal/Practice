@@ -7,6 +7,6 @@ namespace BankSolution.Models
         [Key]
         public int UserId { get; set; }
         public string UserName { get; set; } = string.Empty;
-        public virtual Account? Account { get; set; }
+        public ICollection<Account>? Account { get; set; }
     }
 }

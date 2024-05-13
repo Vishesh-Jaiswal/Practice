@@ -3,7 +3,7 @@ namespace BankSolution.Interfaces
 {
     public interface IAccountOperationsService
     {
-        public void Deposit(Account account);
-        public void Withdraw(Account account);
+        Account? Deposit(Account account);
+        Account? Withdraw(Account account);
     }
 }

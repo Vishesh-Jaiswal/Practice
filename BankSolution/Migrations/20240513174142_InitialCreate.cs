@@ -25,16 +25,17 @@ namespace BankSolution.Migrations
                 name: "Accounts",
                 columns: table => new
                 {
-                    AccountId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    AccountHolderName = table.Column<string>(type: "TEXT", nullable: false),
-                    Balance = table.Column<double>(type: "REAL", nullable: true),
                     AccountType = table.Column<string>(type: "TEXT", nullable: false),
-                    UserId = table.Column<int>(type: "INTEGER", nullable: true)
+                    UserId = table.Column<int>(type: "INTEGER", nullable: false),
+                    AccountId = table.Column<int>(type: "INTEGER", nullable: false),
+                    AccountNumber = table.Column<int>(type: "INTEGER", nullable: true),
+                    AccountHolderName = table.Column<string>(type: "TEXT", nullable: true),
+                    Balance = table.Column<double>(type: "REAL", nullable: true),
+                    Amount = table.Column<double>(type: "REAL", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Accounts", x => x.AccountId);
+                    table.PrimaryKey("PK_Accounts", x => new { x.AccountType, x.UserId });
                     table.ForeignKey(
                         name: "FK_Accounts_Users_UserId",
                         column: x => x.UserId,
@@ -46,8 +47,7 @@ namespace BankSolution.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Accounts_UserId",
                 table: "Accounts",
-                column: "UserId",
-                unique: true);
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
