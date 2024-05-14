@@ -1,5 +1,6 @@
 using BankSolution.Interfaces;
 using BankSolution.Models;
+using BankSolution.Exceptions;
 
 namespace BankSolution.Services
 {
@@ -12,8 +13,12 @@ namespace BankSolution.Services
         }
         public Account? GetDetails(int? UserId,string? AccountType){
             var savingsAccount = _accountRepository?.GetAll()?.FirstOrDefault(u => u.UserId == UserId && u.AccountType == AccountType);
-            if (savingsAccount != null)
+            if (savingsAccount != null){
+                if(savingsAccount.AccountType=="PFF")
+                    throw new CannotTranferFromPFF();
                 return savingsAccount;
+            }
+                
             return null;
         }
         
