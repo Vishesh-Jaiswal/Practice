@@ -28,9 +28,6 @@ namespace BankSolution.Migrations
                     b.Property<string>("AccountHolderName")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("AccountId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int?>("AccountNumber")
                         .HasColumnType("INTEGER");
 

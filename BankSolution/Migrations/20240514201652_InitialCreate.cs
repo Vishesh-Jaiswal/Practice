@@ -27,7 +27,6 @@ namespace BankSolution.Migrations
                 {
                     AccountType = table.Column<string>(type: "TEXT", nullable: false),
                     UserId = table.Column<int>(type: "INTEGER", nullable: false),
-                    AccountId = table.Column<int>(type: "INTEGER", nullable: false),
                     AccountNumber = table.Column<int>(type: "INTEGER", nullable: true),
                     AccountHolderName = table.Column<string>(type: "TEXT", nullable: true),
                     Balance = table.Column<double>(type: "REAL", nullable: true),

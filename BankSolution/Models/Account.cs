@@ -5,8 +5,6 @@ namespace BankSolution.Models
 {
     public class Account
     {
-        [Key]
-        public int AccountId { get; set; }
         public int? AccountNumber { get; set; }
         public string? AccountHolderName { get; set; } = string.Empty;
         public double? Balance { get; set; }

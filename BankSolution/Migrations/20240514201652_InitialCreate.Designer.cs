@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankSolution.Migrations
 {
     [DbContext(typeof(BankSolutionContext))]
-    [Migration("20240513174142_InitialCreate")]
+    [Migration("20240514201652_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,9 +29,6 @@ namespace BankSolution.Migrations
 
                     b.Property<string>("AccountHolderName")
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("AccountId")
-                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("AccountNumber")
                         .HasColumnType("INTEGER");

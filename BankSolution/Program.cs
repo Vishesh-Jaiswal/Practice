@@ -54,10 +54,17 @@ namespace BankSolution
             builder.Services.AddScoped<IRepository<int, User>, UserRepository>();
             builder.Services.AddScoped<IRepository<int, Account>, AccountRepository>();
             builder.Services.AddScoped<IAccountNumberGenerator, RandomAccountNumberGenerator>();
-            builder.Services.AddScoped<IAccountOperationsService, BankAccountService>();
-
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IAccountService, AccountService>();
+            // Scoped services
+            builder.Services.AddScoped<BankAccountService>();
+            builder.Services.AddScoped<AccountTransferService>();
+            builder.Services.AddScoped<ChangeBalanceService>();
+            builder.Services.AddScoped<CheckAccountTypeService>();
+            // Transient or scoped service depending on their implementations
+            builder.Services.AddScoped<IAccountOperationsService, BankAccountService>();
+            builder.Services.AddScoped<IAccountTransferService, AccountTransferService>();
+
             #endregion
 
             var app = builder.Build();

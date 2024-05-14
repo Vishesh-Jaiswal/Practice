@@ -10,10 +10,12 @@ namespace BankSolution.Controllers
     public class BankingContoller : ControllerBase
     {
         private readonly IAccountOperationsService _accountOperationsService;
+        private readonly IAccountTransferService _accountTransferService;
 
-        public BankingContoller(IAccountOperationsService accountOperationsService)
+        public BankingContoller(IAccountOperationsService accountOperationsService, IAccountTransferService accountTransferService)
         {
             _accountOperationsService = accountOperationsService;
+            _accountTransferService=accountTransferService;
         }
         [Route("Withdraw")]
         [HttpPut]
@@ -48,7 +50,7 @@ namespace BankSolution.Controllers
             string message = "";
             try
             {
-                var account=_accountOperationsService.Deposit(acc);
+                var account = _accountOperationsService.Deposit(acc);
                 if (account != null)
                 {
                     return Ok(account);
@@ -64,6 +66,27 @@ namespace BankSolution.Controllers
             }
             return BadRequest(message);
         }
-      
+
+        [Route("Transfer")]
+        [HttpPut]
+        public ActionResult Transfer(int fromUserId, string fromAccountType, int toUserId, string toAccountType, double amount)
+        {
+            string message = "";
+            try
+            {
+                var account = _accountTransferService.Transfer(fromUserId, fromAccountType, toUserId, toAccountType, amount);
+                if (account != null)
+                {
+                    return Ok(account);
+                }
+            }
+            catch (DbUpdateException)
+            {
+                message = "Transfer Failed";
+            }
+            return BadRequest(message);
+        }
+
+
     }
 }
