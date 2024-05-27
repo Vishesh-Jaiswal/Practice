@@ -1,6 +1,6 @@
 using BankSolution.Interfaces;
 using BankSolution.Models;
-
+//comment
 namespace BankSolution.Services
 {
     public class AccountService : IAccountService
